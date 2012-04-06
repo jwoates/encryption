@@ -1,0 +1,98 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title><%=(@title) ? @title : 'Facebook App' %></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <% if @og_data %>
+    <meta property="og:title" content="<%=@og_data['title'] %>"/>
+    <meta property="og:type" content="<%=@og_data['type'] %>"/>
+    <meta property="og:url" content="<%=@og_data['url'] %>"/>
+    <meta property="og:image" content="<%=FRAME_URL%>images/logo.png"/>
+    <meta property="og:description" content="<%=@og_data['description'] %>"/>
+  <% end %>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://font-box.heroku.com/filmotype_modern.css" rel="stylesheet" type="text/css">
+  
+  <script src="/javascripts/libs/mootools-core-1.4.3-full-nocompat.js"></script>
+  <script src="/javascripts/libs/mootools-more-1.4.0.1.js"></script>
+  <script src="/javascripts/libs/FormSet.js"></script>
+  
+
+</head>
+  <body <%if @is_facebook == true%>onload="resize();" <%end%>>
+  <%if @is_facebook == true%>
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '<%= FB_APP_ID %>',
+        status     : true,
+        cookie     : true,
+        oauth      : true,
+        xfbml      : true
+      });
+    };
+
+    (function(d){
+       var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+       js = d.createElement('script'); js.id = id; js.async = true;
+       js.src = "//connect.facebook.net/en_US/all.js";
+       d.getElementsByTagName('head')[0].appendChild(js);
+     }(document));
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<%=FB_APP_ID%>";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  </script>
+  <%end%>
+
+
+  <div id="main_container">
+    <div id="marquee"></div>
+    <div id="main" class="wrapper clearfix">      
+      <%= yield %>      
+    </div>
+  </div>
+  <div id="footer_container">
+    <footer class="wrapper">
+      <a href="#" id="logo_esrb" class="title">esrb</a>
+      <p>The content contained in this app is &copy; 2012 Microsoft Corporation. All rights reserved. You hereby release Microsoft from any and all liability, of any and every nature, arising out of any use of the app. <br /><a target="blank" href="http://www.xbox.com/en-US/Legal/XboxComTOU">See Terms of Use</a> and <a target="blank" href="http://privacy.microsoft.com/en-us/default.mspx">Privacy Policy</a></p>
+      <a href="#" id="logo_live" class="title">Xbox Live</a>
+      <a href="#" id="logo_xbox" class="title">Xbox</a>
+      <a href="#" id="logo_kinect" class="title">Kinect for Xbox</a>
+    </footer>
+  </div>
+
+<script src="/javascripts/application.js"></script>
+
+<%if @is_facebook == true%>
+<script>
+  var _gaq=[['_setAccount','<%=ANALYTICS%>'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+<script>
+  function resize() {
+    FB.Canvas.setAutoResize();
+  }
+</script>
+
+<%end%>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+.*
+archive
+Makefile
+rsync*
+*.lock
+/public/images/generate*
+

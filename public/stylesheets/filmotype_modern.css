@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'FilmotypeModernRegular';
+    src: url('https://s3.amazonaws.com/font.box/filmotype_modern/filmotype_modern-webfont.eot');
+    src: url('https://s3.amazonaws.com/font.box/filmotype_modern/filmotype_modern-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://s3.amazonaws.com/font.box/filmotype_modern/filmotype_modern-webfont.woff') format('woff'),
+         url('https://s3.amazonaws.com/font.box/filmotype_modern/filmotype_modern-webfont.ttf') format('truetype'),
+         url('https://s3.amazonaws.com/font.box/filmotype_modern/filmotype_modern-webfont.svg#') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,42 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat(:list), url(:users, :index) %></li>
+      <li><%= link_to pat(:new), url(:users, :new) %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:all) %> <% mt(:users) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first"><%= mat(:user, :id) %></th>
+          <th><%= mat(:user, :fb_id) %></th>
+          <th><%= mat(:user, :name) %></th>
+          <th><%= mat(:user, :locale) %></th>
+          <th><%= mat(:user, :created_at) %></th>
+          <th><%= mat(:user, :updated_at) %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+          <td class="first"><%= user.id %></td>
+          <td><%= user.fb_id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.locale %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.updated_at %></td>
+          <td class="last">
+            <%= button_to pat(:edit), url(:users, :edit, :id => user.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:users, :destroy, :id => user.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>
