@@ -32,6 +32,7 @@ class Pixar < Padrino::Application
 
   match '/' do
     # test
+    # git commit test
     render '/base/start'
   end
 
