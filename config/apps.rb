@@ -31,6 +31,6 @@ Padrino.configure_apps do
 end
 
 # Mounts the core application for this project
-Padrino.mount("Pixar").to('/en_US/')
+Padrino.mount("Pixar").to('/')
 
 Padrino.mount("Admin").to("/admin")
